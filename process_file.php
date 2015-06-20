@@ -7,7 +7,8 @@ ini_set('max_execution_time', 300);
 $uploaddir = 'uploads/';
 $uploadfile = $uploaddir . basename($_FILES['file']['name']);
 $filename = basename($_FILES['file']['name']);
-$filename = basename($filename, ".pdf"); // Get the filename without .pdf extension
+$arr = explode(' ',trim($filename));
+$filename = basename($arr[0], ".pdf"); // Get the filename without .pdf extension
 
 if (move_uploaded_file($_FILES['file']['tmp_name'], $uploadfile))
 {

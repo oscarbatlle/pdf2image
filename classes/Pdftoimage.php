@@ -52,7 +52,8 @@ class Pdftoimage {
 
     public function pdf2image($len, $file)
     {
-        $filename = basename($file, ".pdf"); // Get the filename without .pdf extension
+        $arr = explode(' ',trim($file));
+        $filename = basename($arr[0], ".pdf"); // Get the filename without .pdf extension
         for ($i = 0; $i <= $len - 1; $i++)
         {
             $im = new imagick("$file" . "[$i]");

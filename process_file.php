@@ -10,6 +10,10 @@ $filename = basename($_FILES['file']['name']);
 $arr = explode(' ',trim($filename));
 $filename = basename($arr[0], ".pdf"); // Get the filename without .pdf extension
 
+if($_FILES['file']['type'] != 'application/pdf'){
+    die('Unsupported filetype uploaded.');
+}
+
 if (move_uploaded_file($_FILES['file']['tmp_name'], $uploadfile))
 {
     $pdftoimage = new Pdftoimage();
@@ -17,7 +21,4 @@ if (move_uploaded_file($_FILES['file']['tmp_name'], $uploadfile))
     $pdftoimage->pdf2image($length, $uploadfile);
     $gallery = new Gallery($filename);
 
-} else
-{
-    echo "Possible file upload attack!\n";
 }
